@@ -40,13 +40,24 @@ public class StringRecursion {
         else {
             return 1 + find(ch, str.substring(1));
         }
+    }
 
+    public static String weave(String str1, String str2) {
+        if (str1 == null || str2 == null) {
+            throw new IllegalArgumentException();
+        }
+        if (str1.equals("")) {
+            return str2;
+        }
+        else if (str2.equals("")) {
+            return str1;
+        }
+
+        return "" + str1.charAt(0) + str2.charAt(0) +
+                weave(str1.substring(1), str2.substring(1));
     }
 
     public static void main(String[] args) {
-        System.out.println(find('c', "charmander"));
-        System.out.println(find('j', "aja"));
-        System.out.println(find('k', "husk"));
-        System.out.println(find('l', "     null"));
+        System.out.println("|" + weave("roma", "    ") + "|");
     }
 }
