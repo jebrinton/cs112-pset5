@@ -9,7 +9,7 @@ public class StringRecursion {
 
     public static String trim(String str) {
         if (str == null) {
-            throw new IllegalArgumentException();
+            return null;
         }
         if (str.equals("")) {
             return str;
@@ -25,7 +25,28 @@ public class StringRecursion {
             return str;
         }
     }
+
+    public static int find(char ch, String str) {
+        if (str == null) {
+            return -1;
+        }
+        if (str.equals("")) {
+            return -1;
+        }
+
+        if (str.charAt(0) == ch) {
+            return 0;
+        }
+        else {
+            return 1 + find(ch, str.substring(1));
+        }
+
+    }
+
     public static void main(String[] args) {
-        System.out.println("|" + trim("    fdksj    ") + "|");
+        System.out.println(find('c', "charmander"));
+        System.out.println(find('j', "aja"));
+        System.out.println(find('k', "husk"));
+        System.out.println(find('l', "     null"));
     }
 }
