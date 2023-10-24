@@ -18,11 +18,24 @@ public class ArrayRecursion {
             return search(item, arr, start+1);
         }
     }
+
+    public static String reverseArrayToString(String[] arr, int index) {
+        if (arr == null) {
+            return "";
+        }
+
+        if (index == arr.length) {
+            return "[";
+        }
+        else if (index == 0) {
+            return reverseArrayToString(arr, 1) + arr[0] + "]";
+        }
+        else {
+            return reverseArrayToString(arr, index+1) + arr[index] + ", ";
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(search(3, new int[]{4, 1, 3, 9}, 0));
-        System.out.println(search(3, new int[]{}, 0));
-        System.out.println(search(7, new int[]{7, 7, 7, 7, 7}, 0));
-        System.out.println(search(7, new int[]{7, 9, 3, 0}, 1));
-        System.out.println(search(7, null, 1));
+        System.out.println(reverseArrayToString(new String[]{"you", "testing", "am", "I"}, 0));
     }
 }
