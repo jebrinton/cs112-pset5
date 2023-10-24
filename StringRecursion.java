@@ -18,7 +18,7 @@ public class StringRecursion {
         if (str.charAt(0) == ' ') {
             return trim(str.substring(1));
         }
-        else if (str.charAt(str.length() - 1) == ' ') {
+        if (str.charAt(str.length() - 1) == ' ') {
             return trim(str.substring(0, str.length() - 1));
         }
         else {
@@ -26,6 +26,6 @@ public class StringRecursion {
         }
     }
     public static void main(String[] args) {
-
+        System.out.println("|" + trim("    fdksj    ") + "|");
     }
 }
