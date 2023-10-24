@@ -57,7 +57,11 @@ public class StringRecursion {
                 weave(str1.substring(1), str2.substring(1));
     }
 
+    public static int indexOf(char ch, String str) {
+        return find(ch, str);
+    }
+
     public static void main(String[] args) {
-        System.out.println("|" + weave("roma", "    ") + "|");
+        System.out.println(indexOf('c', null));
     }
 }
