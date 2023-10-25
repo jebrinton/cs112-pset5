@@ -43,7 +43,9 @@ public class Sudoku {
     private boolean[][][] subgridHasVal;
     
     /*** ADD YOUR ADDITIONAL FIELDS HERE. ***/
-    
+    private boolean[][] rowHasVal;
+    private boolean[][] columnHasVal;
+
     
     /* 
      * Constructs a new Puzzle object, which initially
@@ -61,6 +63,8 @@ public class Sudoku {
         this.subgridHasVal = new boolean[3][3][10];        
 
         /*** INITIALIZE YOUR ADDITIONAL FIELDS HERE. ***/
+        this.rowHasVal = new boolean[9][10];
+        this.columnHasVal = new boolean[9][10];
     }
     
     /*
@@ -72,6 +76,8 @@ public class Sudoku {
         this.subgridHasVal[row/3][col/3][val] = true;
         
         /*** UPDATE YOUR ADDITIONAL FIELDS HERE. ***/
+        this.rowHasVal[row][val] = true;
+        this.columnHasVal[col][val] = true;
     }
         
     /*
@@ -83,6 +89,8 @@ public class Sudoku {
         this.subgridHasVal[row/3][col/3][val] = false;
         
         /*** UPDATE YOUR ADDITIONAL FIELDS HERE. ***/
+        this.rowHasVal[row][val] = false;
+        this.columnHasVal[col][val] = false;
     }  
         
     /*
@@ -138,6 +146,11 @@ public class Sudoku {
     
     /*** ADD ANY ADDITIONAL METHODS HERE. ***/
 
+    private boolean isSafe(int val, int row, int col) {
+        return !this.rowHasVal[row][val]
+                && !this.columnHasVal[col][val]
+                && !this.subgridHasVal[row/3][col/3][val];
+    }
          
     /*
      * This is the key recursive-backtracking method.  Returns true if
@@ -155,13 +168,35 @@ public class Sudoku {
      *    18 ...
      */
     private boolean solveRB(int n) {
-                
-        /* 
-         * The following return statement allows the initial code to
-         * compile.  Replace it with your full implementation of the
-         * recursive-backtracking method.
-         */
-        return false;
+        // if whole board is completed, return true
+        if (n == 81) {
+            return true;
+        }
+
+        int row = n / 9;
+        int col = n % 9;
+
+        if (!valIsFixed[row][col]) {
+            for (int val = 1; val <= 9; val++) {
+
+                if (isSafe(val, row, col)) {
+                    placeVal(val, row, col);
+
+                    if (this.solveRB(n + 1)) {
+                        return true;
+                    }
+
+                    // we only get here if solveRB() didn't return true
+                    removeVal(val, row, col);
+                }
+            }
+
+            // at this point all options have been exhausted, return false
+            return false;
+        }
+        else {
+            return this.solveRB(n + 1);
+        }
     } 
     
     /*
