@@ -1,16 +1,26 @@
-import javax.swing.text.html.StyleSheet;
+/**
+ * StringRecursion.java
+ *
+ * A class with various recursive methods that act on strings.
+ *
+ * Computer Science 112, Boston University
+ *
+ * Jacob Brinton
+ * jbrin@bu.edu
+ */
 
 public class StringRecursion {
-
+    // prints a String in reverse character order
     public static void printReverse(String str) {
         if (str != null && str.length() > 0) {
             System.out.print(str.charAt(str.length() - 1));
             printReverse(str.substring(0, str.length() - 1));
         }
 
-        // doesn't print anything if null or ""
+        // doesn't print anything if null or empty String
     }
 
+    // returns a String with whitespace before or after
     public static String trim(String str) {
         if (str == null) {
             return null;
@@ -30,6 +40,7 @@ public class StringRecursion {
         }
     }
 
+    // returns the first index of a char ch in String str
     public static int find(char ch, String str) {
         if (str == null) {
             return -1;
@@ -51,6 +62,10 @@ public class StringRecursion {
         }
     }
 
+    // creates a new String formed by taking the characters in alternating
+    // order from str1 and str2. str1's first character goes first,
+    // str2's first character goes second, then str1's second character,
+    // and so on
     public static String weave(String str1, String str2) {
         if (str1 == null || str2 == null) {
             throw new IllegalArgumentException();
@@ -66,28 +81,12 @@ public class StringRecursion {
                 weave(str1.substring(1), str2.substring(1));
     }
 
+    // equivalent to find method
     public static int indexOf(char ch, String str) {
         return find(ch, str);
     }
 
     public static void main(String[] args) {
-//        System.out.println(indexOf('c', null));
-//        printReverse(null);
-//        System.out.println(indexOf(' ', null));
-//        System.out.println(find('a', null));
-//        System.out.print(weave("1", "str2"));
-//        System.out.print("|" + trim("       sw d d fkj ds p p p p   " + "     dskjf null   ") + "|");
-//        System.out.print("\n|" + weave("train", "           ") + "|");
-        System.out.println(find('a', "asdf"));
-        System.out.println(find('s', "asdf"));
-        System.out.println(find('d', "asdf"));
-        System.out.println(find('f', "asdf"));
-        System.out.println(find('j', "asdf"));
-
-        System.out.println(find('m', "maki"));
-        System.out.println(find('m', "amki"));
-
-        System.out.println(find('z', "_________"));
 
     }
 }

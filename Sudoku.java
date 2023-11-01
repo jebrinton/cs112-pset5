@@ -7,6 +7,7 @@
  * Computer Science 112, Boston University
  *
  * Jacob Brinton
+ * jbrin@bu.edu
  *
  * NOTE: Discussed the high-level concepts
  * with Felix Bagurskas, but programmed this independently.

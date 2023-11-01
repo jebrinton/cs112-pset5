@@ -1,8 +1,18 @@
-import java.util.Objects;
+/**
+ * ArrayRecursion.java
+ *
+ * A class of various recursive methods that operate on arrays.
+ *
+ * Computer Science 112, Boston University
+ *
+ * Jacob Brinton
+ * jbrin@bu.edu
+ */
 
 public class ArrayRecursion {
+    // searches for an Object, item, in an Object array
     public static boolean search(Object item, Object[] arr, int start) {
-        if (arr == null) {
+        if (arr == null || item == null) {
             throw new IllegalArgumentException();
         }
         if (start < 0 || start > arr.length) {
@@ -13,7 +23,7 @@ public class ArrayRecursion {
             return false;
         }
 
-        if (Objects.equals(item, arr[start])) {
+        if (item.equals(arr[start])) {
             return true;
         }
         else {
@@ -21,6 +31,7 @@ public class ArrayRecursion {
         }
     }
 
+    // reverses an array and prints the remaining contents as a String
     public static String reverseArrayToString(Object[] arr, int index) {
         if (arr == null) {
             return "";
@@ -37,14 +48,12 @@ public class ArrayRecursion {
             return reverseArrayToString(arr, 1) + arr[0] + "]";
         }
         else {
-            return reverseArrayToString(arr, index+1) + arr[index] + ", ";
+            return reverseArrayToString(arr, index+1)
+                    + arr[index] + ", ";
         }
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseArrayToString(new String[]{"first", "second", "third", "fourth"}, -4));
-//        System.out.println(reverseArrayToString(new Integer[]{4, 3, 90, 1991}, 0));
-//        System.out.println(reverseArrayToString(new Sudoku[]{new Sudoku(), new Sudoku(), new Sudoku()}, 0));
-//        System.out.print("|" + reverseArrayToString(new String[]{"     ", " "}, 0) + "|");
+
     }
 }
