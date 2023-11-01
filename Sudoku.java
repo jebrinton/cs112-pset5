@@ -6,8 +6,10 @@
  *
  * Computer Science 112, Boston University
  *
- * Jacob Brinton and Felix Bagurskas
+ * Jacob Brinton
  *
+ * NOTE: Discussed the high-level concepts
+ * with Felix Bagurskas, but programmed this independently.
  */
 
 import java.io.*;   // allows us to read from a file

@@ -1,10 +1,14 @@
+import javax.swing.text.html.StyleSheet;
+
 public class StringRecursion {
 
     public static void printReverse(String str) {
-        if (str != null && str.length() != 0) {
+        if (str != null && str.length() > 0) {
             System.out.print(str.charAt(str.length() - 1));
             printReverse(str.substring(0, str.length() - 1));
         }
+
+        // doesn't print anything if null or ""
     }
 
     public static String trim(String str) {
@@ -34,11 +38,16 @@ public class StringRecursion {
             return -1;
         }
 
-        if (str.charAt(0) == ch) {
+        if (ch == str.charAt(0)) {
             return 0;
         }
         else {
-            return 1 + find(ch, str.substring(1));
+            if (find(ch, str.substring(1)) == -1) {
+                return -1;
+            }
+            else {
+                return 1 + find(ch, str.substring(1));
+            }
         }
     }
 
@@ -62,6 +71,23 @@ public class StringRecursion {
     }
 
     public static void main(String[] args) {
-        System.out.println(indexOf('c', null));
+//        System.out.println(indexOf('c', null));
+//        printReverse(null);
+//        System.out.println(indexOf(' ', null));
+//        System.out.println(find('a', null));
+//        System.out.print(weave("1", "str2"));
+//        System.out.print("|" + trim("       sw d d fkj ds p p p p   " + "     dskjf null   ") + "|");
+//        System.out.print("\n|" + weave("train", "           ") + "|");
+        System.out.println(find('a', "asdf"));
+        System.out.println(find('s', "asdf"));
+        System.out.println(find('d', "asdf"));
+        System.out.println(find('f', "asdf"));
+        System.out.println(find('j', "asdf"));
+
+        System.out.println(find('m', "maki"));
+        System.out.println(find('m', "amki"));
+
+        System.out.println(find('z', "_________"));
+
     }
 }

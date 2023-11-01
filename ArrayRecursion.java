@@ -1,5 +1,7 @@
+import java.util.Objects;
+
 public class ArrayRecursion {
-    public static boolean search(int item, int[] arr, int start) {
+    public static boolean search(Object item, Object[] arr, int start) {
         if (arr == null) {
             throw new IllegalArgumentException();
         }
@@ -11,7 +13,7 @@ public class ArrayRecursion {
             return false;
         }
 
-        if (item == arr[start]) {
+        if (Objects.equals(item, arr[start])) {
             return true;
         }
         else {
@@ -19,9 +21,13 @@ public class ArrayRecursion {
         }
     }
 
-    public static String reverseArrayToString(String[] arr, int index) {
+    public static String reverseArrayToString(Object[] arr, int index) {
         if (arr == null) {
             return "";
+        }
+        if (index < 0) {
+            throw new IllegalArgumentException(
+                    "Negative index input not allowed");
         }
 
         if (index == arr.length) {
@@ -36,6 +42,9 @@ public class ArrayRecursion {
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseArrayToString(new String[]{"you", "testing", "am", "I"}, 0));
+        System.out.println(reverseArrayToString(new String[]{"first", "second", "third", "fourth"}, -4));
+//        System.out.println(reverseArrayToString(new Integer[]{4, 3, 90, 1991}, 0));
+//        System.out.println(reverseArrayToString(new Sudoku[]{new Sudoku(), new Sudoku(), new Sudoku()}, 0));
+//        System.out.print("|" + reverseArrayToString(new String[]{"     ", " "}, 0) + "|");
     }
 }
